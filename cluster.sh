@@ -11,9 +11,9 @@ function startServices {
   docker exec -u hadoop -d nodemaster hadoop/sbin/start-yarn.sh
   sleep 5
   echo ">> Starting Spark ..."
-  docker exec -u hadoop -d nodemaster /home/hadoop/sparkcmd.sh start
-  docker exec -u hadoop -d node2 /home/hadoop/sparkcmd.sh start
-  docker exec -u hadoop -d node3 /home/hadoop/sparkcmd.sh start
+  docker exec -u hadoop -d nodemaster ./sparkcmd.sh start
+  docker exec -u hadoop -d node2 ./sparkcmd.sh start
+  docker exec -u hadoop -d node3 ./sparkcmd.sh start
   # docker exec -u hadoop -d node4 /home/hadoop/sparkcmd.sh start
   show_info
 }
@@ -31,9 +31,9 @@ if [[ $1 = "start" ]]; then
 fi
 
 if [[ $1 = "stop" ]]; then
-  docker exec -u hadoop -d nodemaster /home/hadoop/sparkcmd.sh stop
-  docker exec -u hadoop -d node2 /home/hadoop/sparkcmd.sh stop
-  docker exec -u hadoop -d node3 /home/hadoop/sparkcmd.sh stop
+  docker exec -u hadoop -d nodemaster ./sparkcmd.sh stop
+  docker exec -u hadoop -d node2 ./sparkcmd.sh stop
+  docker exec -u hadoop -d node3 ./sparkcmd.sh stop
   # docker exec -u hadoop -d node4 /home/hadoop/sparkcmd.sh stop
   docker stop nodemaster node2 node3 # node4
   exit
